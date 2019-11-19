@@ -159,7 +159,7 @@ rolloverFiles(const tstring& filename, unsigned int maxBackupIndex)
 
 	// Delete the oldest file
 	tostringstream buffer;
-	buffer << filename << LOG4CPLUS_TEXT(".") << maxBackupIndex;
+	buffer << filename << LOG4CPLUS_TEXT(".") << maxBackupIndex << LOG4CPLUS_TEXT(".log");
 	long ret = file_remove(buffer.str());
 
 	tostringstream source_oss;
@@ -171,8 +171,8 @@ rolloverFiles(const tstring& filename, unsigned int maxBackupIndex)
 		source_oss.str(LOG4CPLUS_TEXT(""));
 		target_oss.str(LOG4CPLUS_TEXT(""));
 
-		source_oss << filename << LOG4CPLUS_TEXT(".") << i;
-		target_oss << filename << LOG4CPLUS_TEXT(".") << (i + 1);
+		source_oss << filename << LOG4CPLUS_TEXT(".") << i << LOG4CPLUS_TEXT(".log");
+		target_oss << filename << LOG4CPLUS_TEXT(".") << (i + 1) << LOG4CPLUS_TEXT(".log");
 
 		tstring const source(source_oss.str());
 		tstring const target(target_oss.str());
@@ -598,7 +598,7 @@ RollingFileAppender::rollover(bool alreadyLocked)
         rolloverFiles(filename, maxBackupIndex);
 
         // Rename fileName to fileName.1
-        tstring target = filename + LOG4CPLUS_TEXT(".1");
+        tstring target = filename + LOG4CPLUS_TEXT(".1.log");
 
         long ret;
 
@@ -821,7 +821,7 @@ DailyRollingFileAppender::rollover(bool alreadyLocked)
     // Do not overwriet the newest file either, e.g. if "log.2009-11-07"
     // already exists rename it to "log.2009-11-07.1"
     tostringstream backup_target_oss;
-    backup_target_oss << scheduledFilename << LOG4CPLUS_TEXT(".") << 1;
+	backup_target_oss << scheduledFilename << LOG4CPLUS_TEXT(".") << 1 << LOG4CPLUS_TEXT(".log");
     tstring backupTarget = backup_target_oss.str();
 
     helpers::LogLog & loglog = helpers::getLogLog();
@@ -1047,7 +1047,7 @@ DailyRollingFileAppender::getFilename(const Time& t) const
         pattern = datePattern.c_str();
 
     tstring result (filename);
-    result += LOG4CPLUS_TEXT(".");
+	result += LOG4CPLUS_TEXT(".");
     result += t.getFormattedTime(pattern, false);
     return result;
 }
@@ -1491,7 +1491,7 @@ TimeBasedRollingFileAppender::rollover1(bool alreadyLocked /*= false*/)
 		rolloverFiles(scheduledFilename, maxBackupIndex);
 
 		// Rename fileName to fileName.1
-		tstring target = scheduledFilename + LOG4CPLUS_TEXT(".1");
+		tstring target = scheduledFilename + LOG4CPLUS_TEXT(".1.log");
 
 		long ret;
 
