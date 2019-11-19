@@ -1,0 +1,65 @@
+*.user
+*.ncb
+*.suo
+*.sdf
+*.opensdf
+.#*
+*~
+*.bak
+ipch/
+autom4te.cache/
+objdir*/
+Win32/
+x64/
+
+.idea
+
+# LaTeX/PDF produciton byproducts
+*.aux
+*.log
+*.tex
+*.toc
+*.xwm
+*.pdf
+*.ref_rename_step
+
+# Compiler produced temporaries
+*.s
+*.ii
+
+# Patches
+*.patch
+*.diff
+
+#
+# From Github's C++.gitignore:
+#
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+/msvc2013/tests/Logs2
+/msvc2013/tests/a
+/msvc2013/tests/log
+/msvc2013/tests/logs
+/msvc2013/tests/Logs1
+/msvc2013/x64
+/msvc2013/Win32
